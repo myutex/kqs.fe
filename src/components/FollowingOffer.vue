@@ -50,6 +50,11 @@ import { ChevronDoubleUpIcon, ChevronDoubleDownIcon } from '@heroicons/vue/solid
 // @ts-ignore
 import im from 'include-media-export/dist/include-media-1.0.2.min';
 
+interface Position {
+  pc: number;
+  mobile: number;
+}
+
 export default defineComponent({
   name: 'FollowingOffer',
   components: {
@@ -60,22 +65,20 @@ export default defineComponent({
   data() {
     return {
       bottom: 0,
-      prevClientY: 0,
-      prevPageY: 0,
-      prevScreenY: 0,
-      nextPageY: 0,
-      nextScreenY: 0,
+      position: {
+        pc: 200,
+        mobile: 25,
+      } as Position,
     };
   },
   methods: {
     handleScroll() {
       if (im.getActive() === 'desktop') {
-        this.bottom = -document.documentElement.scrollTop + 250;
         this.bottom = -document.documentElement.scrollTop + this.position.pc;
       }
 
       if (im.getActive() !== 'desktop') {
-        this.bottom = -document.documentElement.scrollTop + 25;
+        this.bottom = -document.documentElement.scrollTop + this.position.mobile;
       }
     },
     handleWheel() {
@@ -89,22 +92,22 @@ export default defineComponent({
     },
     handleResize() {
       if (im.getActive() === 'desktop') {
-        this.bottom = 250;
+        this.bottom = this.position.pc;
       }
 
       if (im.getActive() !== 'desktop') {
         console.log('lte tablet');
-        this.bottom = 25;
+        this.bottom = this.position.mobile;
       }
     },
   },
   created() {
     if (im.getActive() === 'desktop') {
-      this.bottom = 250;
+      this.bottom = this.position.pc;
     }
 
     if (im.getActive() !== 'desktop') {
-      this.bottom = 25;
+      this.bottom = this.position.mobile;
     }
 
     window.addEventListener('mousewheel', this.handleWheel);
@@ -112,7 +115,7 @@ export default defineComponent({
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('scroll', () => {
       if (im.getActive() !== 'desktop') {
-        this.bottom = -document.documentElement.scrollTop + 25;
+        this.bottom = -document.documentElement.scrollTop + this.position.mobile;
       }
     });
   },
