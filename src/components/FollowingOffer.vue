@@ -57,6 +57,11 @@ export default defineComponent({
   data() {
     return {
       bottom: 0,
+      prevClientY: 0,
+      prevPageY: 0,
+      prevScreenY: 0,
+      nextPageY: 0,
+      nextScreenY: 0,
     };
   },
   methods: {
@@ -101,12 +106,11 @@ export default defineComponent({
     window.addEventListener('mousewheel', this.handleWheel);
     window.addEventListener('keydown', this.handleKeyPress);
     window.addEventListener('resize', this.handleResize);
-    window.addEventListener('touchstart', this.handleScroll);
-    window.addEventListener('touchmove', this.handleScroll);
-    window.addEventListener('touchend', this.handleScroll);
-  },
-  updated() {
-    console.log('updated');
+    window.addEventListener('scroll', () => {
+      if (im.getActive() !== 'desktop') {
+        this.bottom = -document.documentElement.scrollTop + 25;
+      }
+    });
   },
 });
 </script>
