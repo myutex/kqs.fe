@@ -1,10 +1,16 @@
 <template>
   <header :class="[scrolled ? 'scrolled' : null]">
     <div class="container mx-auto">
-      <h1>
+      <h1 v-if="logo.mode === 'kqs'" class="kqs">
         <router-link to="/">
           <img loading="lazy" src="../../public/kqs.logo-removebg-preview.png" alt="한국퀵서비스 로고" />
         </router-link>
+      </h1>
+
+      <h1 v-if="logo.mode === 'sqs'" class="sqs">
+        <router-link to="/"
+          ><img loading="lazy" src="../../public/sqs.logo-removebg-preview.png" alt="스마트퀵서비스 로고"
+        /></router-link>
       </h1>
       <ul>
         <li>
@@ -21,11 +27,22 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+interface Logo {
+  mode: string;
+  kqs: string;
+  sqs: string;
+}
+
 export default defineComponent({
   name: 'Header',
   data() {
     return {
       scrolled: false,
+      logo: {
+        mode: '',
+        kqs: 'kqs.logo-removebg-preview',
+        sqs: 'sqs.logo-removebg-preview',
+      } as Logo,
     };
   },
   methods: {
@@ -39,6 +56,17 @@ export default defineComponent({
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
+    if (window.location.hostname === 'localhost') {
+      this.logo.mode = 'kqs';
+    }
+
+    if (window.location.hostname === '1661-7773.com') {
+      this.logo.mode = 'kqs';
+    }
+
+    if (window.location.hostname === '1661-1987.com') {
+      this.logo.mode = 'sqs';
+    }
   },
 });
 </script>
@@ -75,6 +103,18 @@ header {
       line-height: 80px;
       //text-indent: -9999px;
       //background-image: url('../../public/kqs.logo.png');
+
+      &.sqs {
+        //line-height: 40px;
+
+        @include media('<desktop') {
+          margin-left: -50px;
+        }
+
+        img {
+          //height: 40px;
+        }
+      }
 
       img {
         height: 80px;
