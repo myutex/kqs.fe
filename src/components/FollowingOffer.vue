@@ -23,7 +23,7 @@
         />
       </a>
     </div>
-    <div class="app">
+    <div class="web">
       <a href="https://16617773.qag.kr/main/" target="_blank">실시간 배차주문 (24시간)</a>
     </div>
     <div class="kakao">
@@ -31,6 +31,9 @@
         <!--        <img src="../../public/kakao.pf-3.png" alt="카카오톡 플러스친구" />-->
         카카오톡 주문하기
       </a>
+    </div>
+    <div class="app-link">
+      <a href="https://play.google.com/store/apps/details?id=com.krquick.hmaligo">앱으로 주문하기</a>
     </div>
     <div class="arrow">
       <ChevronDoubleDownIcon class="down" />
@@ -68,6 +71,7 @@ export default defineComponent({
     handleScroll() {
       if (im.getActive() === 'desktop') {
         this.bottom = -document.documentElement.scrollTop + 250;
+        this.bottom = -document.documentElement.scrollTop + this.position.pc;
       }
 
       if (im.getActive() !== 'desktop') {
@@ -213,7 +217,7 @@ div.wrap {
     }
   }
 
-  div.app {
+  div.web {
     margin-bottom: 40px;
     background-color: lighten($oc-indigo-9, 5%);
 
@@ -243,7 +247,12 @@ div.wrap {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 40px;
     background-color: #f7e600;
+
+    @include media('<desktop') {
+      margin-bottom: 20px;
+    }
 
     a {
       //padding: 20px 30px 10px;
@@ -260,6 +269,23 @@ div.wrap {
       //img {
       //  width: 100%;
       //}
+    }
+  }
+
+  div.app-link {
+    a {
+      display: block;
+      background-color: $oc-yellow-6;
+      font-weight: 700;
+      font-size: 18px;
+      color: $oc-gray-8;
+      line-height: 80px;
+      letter-spacing: 1px;
+      text-align: center;
+
+      @include media('<desktop') {
+        line-height: 60px;
+      }
     }
   }
 }
