@@ -10,14 +10,14 @@
       <a href="tel:1661-7773">
         <img
           loading="lazy"
-          src="https://16617773com.files.wordpress.com/2021/01/kakaotalk_photo_2021-01-19-17-23-39-2.png?w=1024"
+          src="../../public/call_w1024.png"
           alt="실시간전화연결"
           srcset="
-            https://16617773com.files.wordpress.com/2021/01/kakaotalk_photo_2021-01-19-17-23-39-2.png?w=1024 1024w,
-            https://16617773com.files.wordpress.com/2021/01/kakaotalk_photo_2021-01-19-17-23-39-2.png?w=150   150w,
-            https://16617773com.files.wordpress.com/2021/01/kakaotalk_photo_2021-01-19-17-23-39-2.png?w=300   300w,
-            https://16617773com.files.wordpress.com/2021/01/kakaotalk_photo_2021-01-19-17-23-39-2.png?w=768   768w,
-            https://16617773com.files.wordpress.com/2021/01/kakaotalk_photo_2021-01-19-17-23-39-2.png        1923w
+            ../../public/call_w1024.png 1024w,
+            ../../public/call_w150.png   150w,
+            ../../public/call_w300.png   300w,
+            ../../public/call_w768.png   768w,
+            ../../public/call.png       1923w
           "
           sizes="(max-width: 1024px) 100vw, 1024px"
         />
