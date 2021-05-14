@@ -56,16 +56,22 @@ export default defineComponent({
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
-    if (window.location.hostname === 'localhost') {
-      this.logo.mode = 'kqs';
-    }
+    switch (window.location.hostname) {
+      case 'localhost':
+        this.logo.mode = 'kqs';
+        break;
 
-    if (window.location.hostname === '1661-7773.com') {
-      this.logo.mode = 'kqs';
-    }
+      case '1661-7773.com':
+        this.logo.mode = 'kqs';
+        break;
 
-    if (window.location.hostname === '1661-1987.com') {
-      this.logo.mode = 'sqs';
+      case '1661-1987.com':
+        this.logo.mode = 'sqs';
+        break;
+
+      default:
+        this.logo.mode = 'kqs';
+        break;
     }
   },
 });
